@@ -10,11 +10,12 @@ class Localization {
     }
 
     parseString(str, replacements) {
-        var result = str;
-        for (var key in replacements) {
-            result = result.replace(new RegExp(`%${key}%`, 'g'), replacements[key]);
+        var result = str.split("%");
+        var fin = "";
+        for (var str of result) {
+            fin += replacements[str] || str;
         }
-        return result;
+        return fin;
     }
 }
 

@@ -11,8 +11,12 @@
             "value": "餐點 %orderName% 已取消"
         },
         {
+            "location": "order.got",
+            "value": "餐點 %orderName% 已被接收"
+        },
+        {
             "location": "order.preparing",
-            "value": "餐點 %orderName% 已被接收，且正在製作中..."
+            "value": "餐點 %orderName% 正在製作中..."
         },
         {
             "location": "order.delivering",
