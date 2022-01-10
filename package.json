@@ -1,0 +1,31 @@
+{
+  "name": "foodpandadesktop",
+  "version": "1.0.0",
+  "description": "Just a pwa-like Foodpanda app with desktop mode",
+  "main": "main.js",
+  "scripts": {
+    "test": "t"
+  },
+  "author": "Muisnow",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^16.0.6"
+  },
+  "build": {
+    "appId": "com.ezhstudio.muisnow.foodpandadesktop",
+    "productName": "Foodpanda Desktop",
+    "copyright": "Copyright © Foopanda Inc.",
+    "win": {
+      "icon": "./icons/foodpanda.png"
+    },
+    "files": [
+      "./node_modules/**/*",
+      "*.js"
+    ]
+  },
+  "dependencies": {
+    "@electron/remote": "^2.0.1",
+    "custom-electron-titlebar": "^3.2.10",
+    "jquery": "^3.6.0"
+  }
+}

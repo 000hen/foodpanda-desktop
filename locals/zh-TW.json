@@ -1,0 +1,30 @@
+{
+    "displayName": "繁體中文",
+    "name": "zh-TW",
+    "data": [
+        {
+            "location": "order.ordered",
+            "value": "餐點 %orderName% 已下定"
+        },
+        {
+            "location": "order.cancelled",
+            "value": "餐點 %orderName% 已取消"
+        },
+        {
+            "location": "order.preparing",
+            "value": "餐點 %orderName% 已被接收，且正在製作中..."
+        },
+        {
+            "location": "order.delivering",
+            "value": "餐點 %orderName% 已製作完成，正在出餐中..."
+        },
+        {
+            "location": "order.delivering.almost",
+            "value": "外送員即將抵達，請準備收餐"
+        },
+        {
+            "location": "order.delivered",
+            "value": "餐點 %orderName% 已送達"
+        }
+    ]
+}
