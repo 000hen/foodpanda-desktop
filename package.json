@@ -29,9 +29,6 @@
     ]
   },
   "dependencies": {
-    "@electron/remote": "^2.0.1",
-    "custom-electron-titlebar": "^3.2.10",
-    "jquery": "^3.6.0",
-    "os-locale": "^6.0.2"
+    "@electron/remote": "^2.0.1"
   }
 }
