@@ -24,3 +24,4 @@ You can just build the app by running the `npm run build` command.
 
 ## Screenshots
 
+***This will be updated soon.***

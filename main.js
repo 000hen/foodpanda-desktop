@@ -7,7 +7,7 @@ const {
 } = electron;
 const path = require('path');
 const { Localization } = require("./i18n.js");
-const osLang = require("os-locale").osLocaleSync();
+const osLang = Intl.DateTimeFormat().resolvedOptions().locale;
 const locale = new Localization(osLang);
 
 require('@electron/remote/main').initialize()

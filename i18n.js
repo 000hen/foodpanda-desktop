@@ -3,11 +3,12 @@ class Localization {
         this.defaultLang = "en-US";
         this.languageid = languageid;
         this.fs = require('fs');
+        this.path = require('path');
     }
 
     getLocation(langLocation) {
         var lang = this.defaultLang;
-        if (this.fs.existsSync(`./locales/${this.languageid}.json`)) lang = this.languageid;
+        if (this.fs.existsSync(this.path.join(__dirname, "locals", `${this.languageid}.json`))) lang = this.languageid;
         var location = JSON.parse(this.fs.readFileSync(`./locals/${lang}.json`).toString());
         return location.data.find(x => x.location == langLocation).value;
     }
