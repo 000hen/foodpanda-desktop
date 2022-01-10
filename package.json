@@ -12,7 +12,7 @@
     "build:all": "electron-builder --win --mac --linux"
   },
   "author": "Muisnow",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "devDependencies": {
     "electron": "^16.0.6"
   },
