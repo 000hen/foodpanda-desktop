@@ -29,8 +29,11 @@ function orderWin(orderid, orderName) {
     win.loadURL(`https://www.foodpanda.com.tw/order-tracking/${orderid}`);
     var script = fs.readFileSync("./ordercheckWeb.js").toString();
     win.webContents.executeJavaScript(script);
-    win.webContents.openDevTools();
-    win.show();
+
+    if (process.env.NODE_ENV === "development") {
+        win.webContents.openDevTools();
+        win.show();
+    }
 
     win.on('closed', () => {
         win = null;

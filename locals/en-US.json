@@ -1,66 +1,66 @@
 {
-    "displayName": "繁體中文",
-    "name": "zh-TW",
+    "displayName": "English (United States)",
+    "name": "en-US",
     "data": [
         {
             "location": "default.unknown",
-            "value": "未知"
+            "value": "Unknown"
         },
         {
             "location": "default.menu",
-            "value": "前往"
+            "value": "Go To"
         },
         {
             "location": "default.menu.home",
-            "value": "首頁"
+            "value": "Home"
         },
         {
             "location": "default.menu.orders",
-            "value": "我的訂單"
+            "value": "My Orders"
         },
         {
             "location": "default.menu.profile",
-            "value": "個人資料"
+            "value": "Profile"
         },
         {
             "location": "default.menu.coupons",
-            "value": "優惠券"
+            "value": "Coupons"
         },
         {
             "location": "default.menu.challenges",
-            "value": "達人挑戰"
+            "value": "Challenges"
         },
         {
             "location": "default.menu.refunds",
-            "value": "退款帳戶"
+            "value": "Refunds"
         },
         {
             "location": "order.ordered",
-            "value": "餐點 %orderName% 已下訂單，預計 %orderTime% 抵達。"
+            "value": "Order placed for %orderName% at %orderTime%."
         },
         {
             "location": "order.cancelled",
-            "value": "餐點 %orderName% 已取消。"
+            "value": "Order %orderId% has been cancelled."
         },
         {
             "location": "order.got",
-            "value": "餐點 %orderName% 已被接收!"
+            "value": "Order %orderId% has been picked up."
         },
         {
             "location": "order.preparing",
-            "value": "餐點 %orderName% 正在製作中..."
+            "value": "Order %orderId% is being prepared."
         },
         {
             "location": "order.delivering",
-            "value": "餐點 %orderName% 已製作完成，正在出餐中... 預計抵達時間 %deliveryTime%"
+            "value": "Order %orderId% is being delivered. It will arrive at %deliveryTime%."
         },
         {
             "location": "order.delivering.almost",
-            "value": "外送員即將抵達，請準備收餐!"
+            "value": "The courier will arrive soon, please prepare to receive your meal!"
         },
         {
             "location": "order.delivered",
-            "value": "餐點 %orderName% 已送達!"
+            "value": "Order %orderId% has been delivered."
         }
     ]
 }

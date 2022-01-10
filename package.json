@@ -4,7 +4,12 @@
   "description": "Just a pwa-like Foodpanda app with desktop mode",
   "main": "main.js",
   "scripts": {
-    "test": "t"
+    "test": "t",
+    "start": "electron .",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
+    "build:all": "electron-builder --win --mac --linux"
   },
   "author": "Muisnow",
   "license": "ISC",
@@ -26,6 +31,7 @@
   "dependencies": {
     "@electron/remote": "^2.0.1",
     "custom-electron-titlebar": "^3.2.10",
-    "jquery": "^3.6.0"
+    "jquery": "^3.6.0",
+    "os-locale": "^6.0.2"
   }
 }

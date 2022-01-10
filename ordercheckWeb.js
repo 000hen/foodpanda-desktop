@@ -5,28 +5,29 @@
 (() => {
     var path = location.pathname;
     var orderid = path.replace(/\/order-tracking\/(\w{4}-\w{4})/gm, "$1");
+    var nowOn = "";
 
-    window.addEventListener("load", () => {
-        setInterval(() => {
-            try {
-                var c = document.querySelector("img.order-status-illustration").src;
+    setInterval(() => {
+        try {
+            var c = document.querySelector("img.order-status-illustration").src;
 
-                if (c === "https://images.deliveryhero.io/image/pd-otp-illustrations/v2/FP_TW/illu-delivered.gif") {
-                    window.electron.ipcRenderer.send("orderStatus", {
-                        type: "delivered",
-                        orderid: orderid,
-                        orderName: document.querySelector(".vendor-name").innerHTML,
-                        lang: document.querySelector("html").lang
-                    });
-                    window.close();
-                }
-            } catch (e) { }
-            
-            try {
-                var f = document.querySelector(".order-status-progress-bar.order-status-progress-bar-active").parentNode.getAttribute("data-testid").split("__")[2];
+            if (c === "https://images.deliveryhero.io/image/pd-otp-illustrations/v2/FP_TW/illu-delivered.gif") {
+                window.electron.ipcRenderer.send("orderStatus", {
+                    type: "delivered",
+                    orderid: orderid,
+                    orderName: document.querySelector(".vendor-name").innerHTML,
+                    lang: document.querySelector("html").lang
+                });
+                window.close();
+            }
+        } catch (e) { }
+        
+        try {
+            var f = document.querySelector(".order-status-progress-bar.order-status-progress-bar-active").parentNode.getAttribute("data-testid").split("__")[2];
 
-                switch (f) {
-                    case "0":
+            switch (f) {
+                case "0":
+                    if (nowOn !== "got") {
                         // got order
                         window.electron.ipcRenderer.send("orderStatus", {
                             type: "got",
@@ -34,9 +35,12 @@
                             orderName: document.querySelector(".vendor-name").innerHTML,
                             lang: navigator.language
                         });
-                        break;
+                        nowOn = "got";
+                    }
+                    break;
 
-                    case "1":
+                case "1":
+                    if (nowOn !== "preparing") {
                         // preparing
                         window.electron.ipcRenderer.send("orderStatus", {
                             type: "preparing",
@@ -44,9 +48,12 @@
                             orderName: document.querySelector(".vendor-name").innerHTML,
                             lang: navigator.language
                         });
-                        break;
+                        nowOn = "preparing";
+                    }
+                    break;
 
-                    case "2":
+                case "2":
+                    if (nowOn !== "delivering") {
                         // delivering
                         window.electron.ipcRenderer.send("orderStatus", {
                             type: "delivering",
@@ -54,9 +61,12 @@
                             orderName: document.querySelector(".vendor-name").innerHTML,
                             lang: navigator.language
                         });
-                        break;
+                        nowOn = "delivering";
+                    }
+                    break;
 
-                    case "3":
+                case "3":
+                    if (nowOn !== "almost") {
                         // almost here
                         window.electron.ipcRenderer.send("orderStatus", {
                             type: "almost",
@@ -64,10 +74,10 @@
                             orderName: document.querySelector(".vendor-name").innerHTML,
                             lang: navigator.language
                         });
-                        break;
-                }
-            } catch (e) { }
-        }, 1000);
-        
-    });
+                        nowOn = "almost";
+                    }
+                    break;
+            }
+        } catch (e) { }
+    }, 1000);
 })()

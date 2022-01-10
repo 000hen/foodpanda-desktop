@@ -3,11 +3,12 @@ const fs = require('fs');
 const {
     app,
     BrowserWindow,
-    Menu,
-    Notification
+    Menu
 } = electron;
 const path = require('path');
-const { addToOrder } = require('./order.js');
+const { Localization } = require("./i18n.js");
+const osLang = require("os-locale").osLocaleSync();
+const locale = new Localization(osLang);
 
 require('@electron/remote/main').initialize()
 
@@ -28,40 +29,46 @@ function createWindow() {
     // Hide the menu bar
     mainWindow.setMenu(Menu.buildFromTemplate([
         {
-            label: "Go To",
+            label: locale.getLocation("default.menu"),
             submenu: [
                 {
-                    label: "Home",
+                    // Home
+                    label: locale.getLocation("default.menu.home"),
                     click: () => {
                         mainWindow.loadURL('https://www.foodpanda.com.tw/');
                     }
                 },
                 {
-                    label: "My Orders",
+                    // Orders
+                    label: locale.getLocation("default.menu.orders"),
                     click: () => {
                         mainWindow.loadURL('https://www.foodpanda.com.tw/orders');
                     }
                 },
                 {
-                    label: "Profile",
+                    // Profile
+                    label: locale.getLocation("default.menu.profile"),
                     click: () => {
                         mainWindow.loadURL('https://www.foodpanda.com.tw/profile');
                     }
                 },
                 {
-                    label: "Coupons",
+                    // Coupons
+                    label: locale.getLocation("default.menu.coupons"),
                     click: () => {
                         mainWindow.loadURL('https://www.foodpanda.com.tw/vouchers/new');
                     }
                 },
                 {
-                    label: "Challenges",
+                    // Challenges
+                    label: locale.getLocation("default.menu.challenges"),
                     click: () => {
                         mainWindow.loadURL('https://www.foodpanda.com.tw/rewards/challenges');
                     }
                 },
                 {
-                    label: "Refund",
+                    // Refunds
+                    label: locale.getLocation("default.menu.refunds"),
                     click: () => {
                         mainWindow.loadURL('https://www.foodpanda.com.tw/refund-account');
                     }
@@ -73,7 +80,7 @@ function createWindow() {
 
     require("@electron/remote/main").enable(mainWindow.webContents)
 
-    mainWindow.webContents.openDevTools();
+    if (process.env.NODE_ENV === "development") mainWindow.webContents.openDevTools();
 
     mainWindow.webContents.on("did-finish-load", () => {
         var script = fs.readFileSync("./webscript.js").toString();
