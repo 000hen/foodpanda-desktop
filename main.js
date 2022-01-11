@@ -6,6 +6,7 @@ const {
     Menu
 } = electron;
 const path = require('path');
+require("./order.js");
 const { Localization } = require("./i18n.js");
 const osLang = Intl.DateTimeFormat().resolvedOptions().locale;
 const locale = new Localization(osLang);

@@ -51,35 +51,35 @@ ipcMain.on('orderStatus', (event, data) => {
     switch (data.type) {
         case "got":
             var locale = new Localization(data.lang);
-            sendNotification("Foodpanda Desktop", locale.parseString(locale.getLocation("order.got"), { orderName: `${data.orderName}(${data.orderid})` }), () => {
+            sendNotification("Foodpanda Desktop", locale.parseString(locale.getLocation("order.got"), { orderName: `${data.orderName}(${data.orderid})`, orderTime: data.orderTime }), () => {
                 global.mainWindow.loadURL(`https://www.foodpanda.com.tw/order-tracking/${data.orderid}`);
             });
             break;
         
         case "preparing":
             var locale = new Localization(data.lang);
-            sendNotification("Foodpanda Desktop", locale.parseString(locale.getLocation("order.preparing"), { orderName: `${data.orderName}(${data.orderid})` }), () => {
+            sendNotification("Foodpanda Desktop", locale.parseString(locale.getLocation("order.preparing"), { orderName: `${data.orderName}(${data.orderid})`, orderTime: data.orderTime }), () => {
                 global.mainWindow.loadURL(`https://www.foodpanda.com.tw/order-tracking/${data.orderid}`);
             });
             break;
         
         case "delivering":
             var locale = new Localization(data.lang);
-            sendNotification("Foodpanda Desktop", locale.parseString(locale.getLocation("order.delivering"), { orderName: `${data.orderName}(${data.orderid})` }), () => {
+            sendNotification("Foodpanda Desktop", locale.parseString(locale.getLocation("order.delivering"), { orderName: `${data.orderName}(${data.orderid})`, orderTime: data.orderTime }), () => {
                 global.mainWindow.loadURL(`https://www.foodpanda.com.tw/order-tracking/${data.orderid}`);
             });
             break;
         
         case "almost":
             var locale = new Localization(data.lang);
-            sendNotification("Foodpanda Desktop", locale.parseString(locale.getLocation("order.delivering.almost"), { orderName: `${data.orderName}(${data.orderid})` }), () => {
+            sendNotification("Foodpanda Desktop", locale.parseString(locale.getLocation("order.delivering.almost"), { orderName: `${data.orderName}(${data.orderid})`, orderTime: data.orderTime }), () => {
                 global.mainWindow.loadURL(`https://www.foodpanda.com.tw/order-tracking/${data.orderid}`);
             });
             break;
         
         case "delivered":
             var locale = new Localization(data.lang);
-            sendNotification("Foodpanda Desktop", locale.parseString(locale.getLocation("order.delivered"), { orderName: `${data.orderName}(${data.orderid})` }), () => {
+            sendNotification("Foodpanda Desktop", locale.parseString(locale.getLocation("order.delivered"), { orderName: `${data.orderName}(${data.orderid})`, orderTime: data.orderTime }), () => {
                 global.mainWindow.loadURL(`https://www.foodpanda.com.tw/order-tracking/${orderid}`);
             });
             break;

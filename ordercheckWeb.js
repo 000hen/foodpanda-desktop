@@ -24,6 +24,7 @@
         
         try {
             var f = document.querySelector(".order-status-progress-bar.order-status-progress-bar-active").parentNode.getAttribute("data-testid").split("__")[2];
+            var time = document.querySelector("figcaption[data-testid=order-status__eta__label__eta]").innerHTML.replace(/ /gm, "");
 
             switch (f) {
                 case "0":
@@ -33,6 +34,7 @@
                             type: "got",
                             orderid: orderid,
                             orderName: document.querySelector(".vendor-name").innerHTML,
+                            orderTime: time,
                             lang: navigator.language
                         });
                         nowOn = "got";
@@ -46,6 +48,7 @@
                             type: "preparing",
                             orderid: orderid,
                             orderName: document.querySelector(".vendor-name").innerHTML,
+                            orderTime: time,
                             lang: navigator.language
                         });
                         nowOn = "preparing";
@@ -59,6 +62,7 @@
                             type: "delivering",
                             orderid: orderid,
                             orderName: document.querySelector(".vendor-name").innerHTML,
+                            orderTime: time,
                             lang: navigator.language
                         });
                         nowOn = "delivering";
@@ -72,6 +76,7 @@
                             type: "almost",
                             orderid: orderid,
                             orderName: document.querySelector(".vendor-name").innerHTML,
+                            orderTime: time,
                             lang: navigator.language
                         });
                         nowOn = "almost";
