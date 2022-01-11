@@ -14,6 +14,14 @@
   },
   "author": "Muisnow",
   "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/000hen/foodpanda-desktop/issues"
+  },
+  "homepage": "https://github.com/000hen/foodpanda-desktop",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/000hen/foodpanda-desktop.git"
+  },
   "devDependencies": {
     "electron": "^16.0.6"
   },
@@ -24,11 +32,24 @@
     "win": {
       "icon": "./icons/foodpanda.png"
     },
+    "linux": {
+      "icon": "./icons/foodpanda.png"
+    },
+    "mac": {
+      "icon": "./icons/foodpanda.png"
+    },
+    "directories": {
+      "output": "./build"
+    },
     "files": [
       "./node_modules/**/*",
       "*.js",
       "locals/**/*"
-    ]
+    ],
+    "publish": [
+      "github"
+    ],
+    "artifactName": "${productName}-${version}-${os}-${arch}.${ext}"
   },
   "dependencies": {
     "@electron/remote": "^2.0.1"
