@@ -4,6 +4,8 @@
 
 ## Introduction
 
+***[繁體中文文檔](/doc/README.zh.md)***
+
 This is a Foodpanda app that is able to order food from Foodpanda on desktop platforms. And includes a feature that can notify you of the order's status.
 
 ## How to Use
