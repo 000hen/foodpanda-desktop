@@ -11,6 +11,7 @@ require("./order.js");
 const { Localization } = require("./i18n.js");
 const osLang = Intl.DateTimeFormat().resolvedOptions().locale;
 const locale = new Localization(osLang);
+const packageJson = require('./package.json');
 
 require('@electron/remote/main').initialize()
 
@@ -99,3 +100,4 @@ function createWindow() {
 }
 
 app.on('ready', createWindow);
+app.setAppUserModelId(packageJson.displayName);
