@@ -14,7 +14,7 @@ This is a Foodpanda app that is able to order food from Foodpanda on desktop pla
 
  1. Clone/Download the repository.
  2. Run the `npm install` command.
- 3. Run the `npm start` command.
+ 3. Run the `npm start` command. (Using `NODE_ENV=development` will let the devtools open)
 
 Now, you can use the app to order food.
 
@@ -22,8 +22,14 @@ Now, you can use the app to order food.
 
 ***There is the best way to build the app: Download the release (from [release page](/releases/latest)) and follow the instructions.***
 
-You can just build the app by running the `npm run build` command.
+You can build foodpanda-desktop with `electron-builder` to build the app.
 
 ## Screenshots
 
-***This will be updated soon.***
+ 1. Main Page
+
+ ![Main Page](https://cdn.discordapp.com/attachments/698551378745884835/930397857272430622/unknown.png)
+
+ 2. Notifications
+
+ ![Notifications](https://cdn.discordapp.com/attachments/698551378745884835/930398948483538955/unknown.png)

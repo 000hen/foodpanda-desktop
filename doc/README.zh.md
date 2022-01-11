@@ -12,7 +12,7 @@
 
  1. 下載/克隆這個Repo
  2. 使用 `npm install` 命令來安裝
- 3. 使用 `npm start` 命令來啟動
+ 3. 使用 `npm start` 命令來啟動 (使用 `NODE_ENV=development` 會讓開發者工具開啟)
 
 現在，你可以使用這個程式來訂餐。
 
@@ -20,8 +20,14 @@
 
 ***最好的建置方式是：從 [release page](/releases/latest) 上下載安裝並跟著說明安裝。***
     
-你可以只用執行 `npm run build` 命令來建置程式。
+你可以使用 `electron-builder` 來建置程式。
 
 ## 螢幕截圖
 
-***這將會很快更新。***
+ 1. 主頁
+
+![Main Page](https://cdn.discordapp.com/attachments/698551378745884835/930397857272430622/unknown.png)
+
+ 2. 通知
+
+![Notifications](https://cdn.discordapp.com/attachments/698551378745884835/930398948483538955/unknown.png)

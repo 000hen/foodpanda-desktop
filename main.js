@@ -3,7 +3,8 @@ const fs = require('fs');
 const {
     app,
     BrowserWindow,
-    Menu
+    Menu,
+    globalShortcut,
 } = electron;
 const path = require('path');
 require("./order.js");
@@ -84,12 +85,16 @@ function createWindow() {
     if (process.env.NODE_ENV === "development") mainWindow.webContents.openDevTools();
 
     mainWindow.webContents.on("did-finish-load", () => {
-        var script = fs.readFileSync("./webscript.js").toString();
+        var script = fs.readFileSync(path.join(__dirname, "webscript.js")).toString();
         mainWindow.webContents.executeJavaScript(script);
     })
 
     mainWindow.on('closed', function () {
         mainWindow = null;
+    });
+
+    globalShortcut.register('CommandOrControl+Shift+I', () => {
+        if (global.mainWindow) global.mainWindow.webContents.openDevTools();
     });
 }
 

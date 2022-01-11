@@ -25,7 +25,8 @@
     },
     "files": [
       "./node_modules/**/*",
-      "*.js"
+      "*.js",
+      "locals/**/*"
     ]
   },
   "dependencies": {
