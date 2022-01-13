@@ -12,13 +12,13 @@
     var orderName = "";
     var orderTime = "";
 
-    function sendToBack(type) {
+    function sendToBack(type, ordName) {
         if (nowOn === type) return;
 
         window.electron.ipcRenderer.send("orderStatus", {
             type: type,
             orderid: orderid,
-            orderName: orderName,
+            orderName: ordName || orderName,
             orderTime: orderTime,
             lang: navigator.language
         });
@@ -30,7 +30,7 @@
             var c = document.querySelector("img.order-status-illustration").src;
 
             if (c === "https://images.deliveryhero.io/image/pd-otp-illustrations/v2/FP_TW/illu-delivered.gif") {
-                sendToBack("delivered");
+                sendToBack("delivered", document.querySelector(".vendor-name").innerHTML);
                 window.close();
             }
         } catch (e) { }
