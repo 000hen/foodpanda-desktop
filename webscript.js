@@ -4,6 +4,7 @@
 
 (() => {
     console.log("[Foodpanda Desktop] Web script loaded!");
+    
     var path = location.pathname;
 
     if (path.match(/\/order-tracking\/(\w{4}-\w{4})/gm)) {

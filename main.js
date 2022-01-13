@@ -12,7 +12,7 @@ require("./order.js");
 const { Localization } = require("./i18n.js");
 const osLang = Intl.DateTimeFormat().resolvedOptions().locale;
 const locale = new Localization(osLang);
-const packageJson = require('./package.json');
+const packageJson = global.packageJson = require('./package.json');
 
 var exit = false;
 
@@ -20,7 +20,7 @@ require('@electron/remote/main').initialize()
 
 Menu.setApplicationMenu(null);
 
-function toPage(path) {
+const toPage = global.toPage = (path) => {
     mainWindow.show();
     mainWindow.loadURL(`https://www.foodpanda.com.tw/${path}`);
 }

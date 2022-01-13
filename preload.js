@@ -1,17 +1,11 @@
 const {
     contextBridge,
-    ipcRenderer,
-    shell
+    ipcRenderer
 } = require('electron');
-var remote = require('@electron/remote');
-var fs = require('fs');
 var Localization = require('./i18n.js').Localization;
 
 contextBridge.exposeInMainWorld('electron', {
     ipcRenderer,
-    shell,
-    // jQuery,
-    // $: jQuery,
     require: require,
     remoteRequire: require('@electron/remote').require,
     addToOrder: function (orderid) {

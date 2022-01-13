@@ -3,83 +3,69 @@
 "use strict";
 
 (() => {
-    var path = location.pathname;
-    var orderid = path.replace(/\/order-tracking\/(\w{4}-\w{4})/gm, "$1");
+    console.log("[Foodpanda Desktop] Order checker loaded!");
+
     var nowOn = "";
+    var path = location.pathname;
+
+    var orderid = path.replace(/\/order-tracking\/(\w{4}-\w{4})/gm, "$1");
+    var orderName = "";
+    var orderTime = "";
+
+    function sendToBack(type) {
+        if (nowOn === type) return;
+
+        window.electron.ipcRenderer.send("orderStatus", {
+            type: type,
+            orderid: orderid,
+            orderName: orderName,
+            orderTime: orderTime,
+            lang: navigator.language
+        });
+        nowOn = type;
+    }
 
     setInterval(() => {
         try {
             var c = document.querySelector("img.order-status-illustration").src;
 
             if (c === "https://images.deliveryhero.io/image/pd-otp-illustrations/v2/FP_TW/illu-delivered.gif") {
-                window.electron.ipcRenderer.send("orderStatus", {
-                    type: "delivered",
-                    orderid: orderid,
-                    orderName: document.querySelector(".vendor-name").innerHTML,
-                    lang: document.querySelector("html").lang
-                });
+                sendToBack("delivered");
                 window.close();
             }
         } catch (e) { }
         
         try {
             var f = document.querySelector(".order-status-progress-bar.order-status-progress-bar-active").parentNode.getAttribute("data-testid").split("__")[2];
-            var time = document.querySelector("figcaption[data-testid=order-status__eta__label__eta]").innerHTML.replace(/ /gm, "");
+            orderTime = document.querySelector("figcaption[data-testid=order-status__eta__label__eta]").innerHTML.replace(/ /gm, "");
+            orderName = document.querySelector(".vendor-name").innerHTML;
 
             switch (f) {
                 case "0":
                     if (nowOn !== "got") {
                         // got order
-                        window.electron.ipcRenderer.send("orderStatus", {
-                            type: "got",
-                            orderid: orderid,
-                            orderName: document.querySelector(".vendor-name").innerHTML,
-                            orderTime: time,
-                            lang: navigator.language
-                        });
-                        nowOn = "got";
+                        sendToBack("got");
                     }
                     break;
 
                 case "1":
                     if (nowOn !== "preparing") {
                         // preparing
-                        window.electron.ipcRenderer.send("orderStatus", {
-                            type: "preparing",
-                            orderid: orderid,
-                            orderName: document.querySelector(".vendor-name").innerHTML,
-                            orderTime: time,
-                            lang: navigator.language
-                        });
-                        nowOn = "preparing";
+                        sendToBack("preparing");
                     }
                     break;
 
                 case "2":
                     if (nowOn !== "delivering") {
                         // delivering
-                        window.electron.ipcRenderer.send("orderStatus", {
-                            type: "delivering",
-                            orderid: orderid,
-                            orderName: document.querySelector(".vendor-name").innerHTML,
-                            orderTime: time,
-                            lang: navigator.language
-                        });
-                        nowOn = "delivering";
+                        sendToBack("delivering");
                     }
                     break;
 
                 case "3":
                     if (nowOn !== "almost") {
                         // almost here
-                        window.electron.ipcRenderer.send("orderStatus", {
-                            type: "almost",
-                            orderid: orderid,
-                            orderName: document.querySelector(".vendor-name").innerHTML,
-                            orderTime: time,
-                            lang: navigator.language
-                        });
-                        nowOn = "almost";
+                        sendToBack("almost");
                     }
                     break;
             }
