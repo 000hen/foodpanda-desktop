@@ -11,6 +11,10 @@
             "value": "Go To"
         },
         {
+            "location": "default.menu.show",
+            "value": "Show App"
+        },
+        {
             "location": "default.menu.home",
             "value": "Home"
         },
@@ -33,6 +37,10 @@
         {
             "location": "default.menu.refunds",
             "value": "Refunds"
+        },
+        {
+            "location": "default.menu.quit",
+            "value": "Quit"
         },
         {
             "location": "order.ordered",

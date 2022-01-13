@@ -4,7 +4,9 @@ const {
     app,
     BrowserWindow,
     Menu,
+    MenuItem,
     globalShortcut,
+    Tray
 } = electron;
 const path = require('path');
 require("./order.js");
@@ -13,9 +15,74 @@ const osLang = Intl.DateTimeFormat().resolvedOptions().locale;
 const locale = new Localization(osLang);
 const packageJson = require('./package.json');
 
+var exit = false;
+
 require('@electron/remote/main').initialize()
 
 Menu.setApplicationMenu(null);
+
+function toPage(path) {
+    mainWindow.show();
+    mainWindow.loadURL(`https://www.foodpanda.com.tw/${path}`);
+}
+
+var submenu = [
+    {
+        // Home
+        label: locale.getLocation("default.menu.home"),
+        click: () => {
+            toPage("");
+        }
+    },
+    {
+        // Orders
+        label: locale.getLocation("default.menu.orders"),
+        click: () => {
+            toPage("orders");
+        }
+    },
+    {
+        // Profile
+        label: locale.getLocation("default.menu.profile"),
+        click: () => {
+            toPage("profile");
+        }
+    },
+    {
+        // Coupons
+        label: locale.getLocation("default.menu.coupons"),
+        click: () => {
+            toPage("vouchers/new");
+        }
+    },
+    {
+        // Challenges
+        label: locale.getLocation("default.menu.challenges"),
+        click: () => {
+            toPage("rewards/challenges");
+        }
+    },
+    {
+        // Refunds
+        label: locale.getLocation("default.menu.refunds"),
+        click: () => {
+            toPage("refund-account");
+        }
+    },
+    {
+        label: "",
+        type: "separator"
+    },
+    {
+        // Exit
+        label: locale.getLocation("default.menu.quit"),
+        click: () => {
+            exit = true;
+            mainWindow.close();
+            app.quit();
+        }
+    }
+];
 
 function createWindow() {
     var mainWindow = global.mainWindow = new BrowserWindow({
@@ -29,56 +96,32 @@ function createWindow() {
         }
     });
 
-    // Hide the menu bar
-    mainWindow.setMenu(Menu.buildFromTemplate([
+    var menu = Menu.buildFromTemplate([{
+        label: locale.getLocation("default.menu"),
+        submenu: submenu
+    }]);
+
+    var tray = mainWindow.tray = new Tray(path.join(__dirname, 'icons', 'foodpanda.png'));
+
+    submenu.unshift(
         {
-            label: locale.getLocation("default.menu"),
-            submenu: [
-                {
-                    // Home
-                    label: locale.getLocation("default.menu.home"),
-                    click: () => {
-                        mainWindow.loadURL('https://www.foodpanda.com.tw/');
-                    }
-                },
-                {
-                    // Orders
-                    label: locale.getLocation("default.menu.orders"),
-                    click: () => {
-                        mainWindow.loadURL('https://www.foodpanda.com.tw/orders');
-                    }
-                },
-                {
-                    // Profile
-                    label: locale.getLocation("default.menu.profile"),
-                    click: () => {
-                        mainWindow.loadURL('https://www.foodpanda.com.tw/profile');
-                    }
-                },
-                {
-                    // Coupons
-                    label: locale.getLocation("default.menu.coupons"),
-                    click: () => {
-                        mainWindow.loadURL('https://www.foodpanda.com.tw/vouchers/new');
-                    }
-                },
-                {
-                    // Challenges
-                    label: locale.getLocation("default.menu.challenges"),
-                    click: () => {
-                        mainWindow.loadURL('https://www.foodpanda.com.tw/rewards/challenges');
-                    }
-                },
-                {
-                    // Refunds
-                    label: locale.getLocation("default.menu.refunds"),
-                    click: () => {
-                        mainWindow.loadURL('https://www.foodpanda.com.tw/refund-account');
-                    }
-                }
-            ]
+            label: locale.getLocation("default.menu.show"),
+            click: () => {
+                mainWindow.show();
+            }
+        },
+        {
+            lable: "",
+            type: "separator"
         }
-    ]));
+    );
+
+    tray.setToolTip(packageJson.displayName);
+    var trayMenu = Menu.buildFromTemplate(submenu);
+    tray.setContextMenu(trayMenu);
+
+    // Make the window menu
+    mainWindow.setMenu(menu);
     mainWindow.loadURL("https://www.foodpanda.com.tw/");
 
     require("@electron/remote/main").enable(mainWindow.webContents)
@@ -90,8 +133,11 @@ function createWindow() {
         mainWindow.webContents.executeJavaScript(script);
     })
 
-    mainWindow.on('closed', function () {
-        mainWindow = null;
+    mainWindow.on('close', event => {
+        if (!exit) {
+            event.preventDefault();
+            mainWindow.hide();
+        }
     });
 
     globalShortcut.register('CommandOrControl+Shift+I', () => {

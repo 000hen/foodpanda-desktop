@@ -11,6 +11,10 @@
             "value": "前往"
         },
         {
+            "location": "default.menu.show",
+            "value": "顯示應用程式"
+        },
+        {
             "location": "default.menu.home",
             "value": "首頁"
         },
@@ -33,6 +37,10 @@
         {
             "location": "default.menu.refunds",
             "value": "退款帳戶"
+        },
+        {
+            "location": "default.menu.quit",
+            "value": "結束"
         },
         {
             "location": "order.ordered",
