@@ -33,3 +33,7 @@ You can build foodpanda-desktop with `electron-builder` to build the app.
  2. Notifications
 
  ![Notifications](https://cdn.discordapp.com/attachments/698551378745884835/930398948483538955/unknown.png)
+
+ 3. All Messages You might see
+
+ ![Messages](https://cdn.discordapp.com/attachments/698551378745884835/931151990279503882/unknown.png)

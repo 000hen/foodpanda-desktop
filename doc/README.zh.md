@@ -26,8 +26,12 @@
 
  1. 主頁
 
-![Main Page](https://cdn.discordapp.com/attachments/698551378745884835/930397857272430622/unknown.png)
+ ![Main Page](https://cdn.discordapp.com/attachments/698551378745884835/930397857272430622/unknown.png)
 
  2. 通知
 
-![Notifications](https://cdn.discordapp.com/attachments/698551378745884835/930398948483538955/unknown.png)
+ ![Notifications](https://cdn.discordapp.com/attachments/698551378745884835/930398948483538955/unknown.png)
+
+ 3. 你可能會看到的訊息
+
+ ![Messages](https://cdn.discordapp.com/attachments/698551378745884835/931151990279503882/unknown.png)
