@@ -4,7 +4,6 @@ const {
     app,
     BrowserWindow,
     Menu,
-    MenuItem,
     globalShortcut,
     Tray
 } = electron;
@@ -124,7 +123,7 @@ function createWindow() {
     mainWindow.setMenu(menu);
     mainWindow.loadURL("https://www.foodpanda.com.tw/");
 
-    require("@electron/remote/main").enable(mainWindow.webContents)
+    require("@electron/remote/main").enable(mainWindow.webContents);
 
     if (process.env.NODE_ENV === "development") mainWindow.webContents.openDevTools();
 
