@@ -145,4 +145,8 @@ function createWindow() {
 }
 
 app.on('ready', createWindow);
+app.on("activate", event => {
+    event.preventDefault();
+    if (global.mainWindow) global.mainWindow.show();
+})
 app.setAppUserModelId(packageJson.displayName);

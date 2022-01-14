@@ -10,7 +10,8 @@
     "build:win": "electron-builder --win",
     "build:mac": "electron-builder --mac",
     "build:linux": "electron-builder --linux",
-    "build:all": "electron-builder --win --mac --linux"
+    "build:all": "electron-builder --win --mac --linux",
+    "build:publish": "electron-builder --x64 --ia32 --publish always"
   },
   "author": "Muisnow",
   "license": "Apache-2.0",
@@ -30,13 +31,22 @@
     "productName": "Foodpanda Desktop",
     "copyright": "Copyright © Foopanda Inc.",
     "win": {
-      "icon": "./icons/foodpanda.png"
+      "icon": "./icons/foodpanda.png",
+      "publish": [
+        "github"
+      ]
     },
     "linux": {
-      "icon": "./icons/foodpanda.png"
+      "icon": "./icons/foodpanda.png",
+      "publish": [
+        "github"
+      ]
     },
     "mac": {
-      "icon": "./icons/foodpanda.png"
+      "icon": "./icons/foodpanda.png",
+      "publish": [
+        "github"
+      ]
     },
     "directories": {
       "output": "./build"
@@ -46,9 +56,6 @@
       "*.js",
       "locals/**/*",
       "icons/**/*"
-    ],
-    "publish": [
-      "github"
     ],
     "artifactName": "${productName}-${version}-${os}-${arch}.${ext}"
   },
