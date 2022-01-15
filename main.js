@@ -13,6 +13,9 @@ const { Localization } = require("./i18n.js");
 const osLang = Intl.DateTimeFormat().resolvedOptions().locale;
 const locale = new Localization(osLang);
 const packageJson = global.packageJson = require('./package.json');
+const gotTheLock = app.requestSingleInstanceLock();
+
+if (!gotTheLock) app.quit();
 
 var exit = false;
 
@@ -142,11 +145,14 @@ function createWindow() {
     globalShortcut.register('CommandOrControl+Shift+I', () => {
         if (global.mainWindow) global.mainWindow.webContents.openDevTools();
     });
+
+    return mainWindow;
 }
 
 app.on('ready', createWindow);
-app.on("activate", event => {
-    event.preventDefault();
-    if (global.mainWindow) global.mainWindow.show();
-})
+app.on('second-instance', (event, commandLine, workingDirectory) => {
+    if (global.mainWindow) {
+        global.mainWindow.show();
+    }
+});
 app.setAppUserModelId(packageJson.displayName);
