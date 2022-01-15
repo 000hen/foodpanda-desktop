@@ -37,3 +37,7 @@ You can build foodpanda-desktop with `electron-builder` to build the app.
  3. All Messages You might see
 
  ![Messages](https://cdn.discordapp.com/attachments/698551378745884835/931151990279503882/unknown.png)
+
+# TODO
+
+ * [ ] Make a useful chat function that can be used to send messages to the delivery guy (or delivery guy send to you).

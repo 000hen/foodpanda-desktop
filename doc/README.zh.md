@@ -35,3 +35,7 @@
  3. 你可能會看到的訊息
 
  ![Messages](https://cdn.discordapp.com/attachments/698551378745884835/931151990279503882/unknown.png)
+
+# TODO
+
+ * [ ] 做一個有用的聊天功能，可以讓你傳訊息給外送員 (或者外送員傳給你)。
