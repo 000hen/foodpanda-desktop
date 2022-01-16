@@ -8,7 +8,7 @@
 
 ## 如何使用
 
-***你可以在 [release page](/releases/lastest) 上安裝這個程式。下面是開發用的說明。***
+***你可以在 [release page](https://github.com/000hen/foodpanda-desktop/releases/latest) 上安裝這個程式。下面是開發用的說明。***
 
  1. 下載/克隆這個Repo
  2. 使用 `npm install` 命令來安裝
@@ -18,7 +18,7 @@
 
 ## 建置程式
 
-***最好的建置方式是：從 [release page](/releases/latest) 上下載安裝並跟著說明安裝。***
+***最好的建置方式是：從 [release page](https://github.com/000hen/foodpanda-desktop/releases/latest) 上下載安裝並跟著說明安裝。***
     
 你可以使用 `electron-builder` 來建置程式。
 
