@@ -60,7 +60,7 @@
         },
         {
             "location": "order.delivering",
-            "value": "Order %orderId% is being delivered. It will arrive at %orderTime%."
+            "value": "Order %orderId% is being delivered.\nIt will arrive at %orderTime%."
         },
         {
             "location": "order.delivering.almost",

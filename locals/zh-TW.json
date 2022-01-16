@@ -60,7 +60,7 @@
         },
         {
             "location": "order.delivering",
-            "value": "餐點 %orderName% 已製作完成，正在出餐中... 預計抵達時間 %orderTime%"
+            "value": "餐點 %orderName% 已製作完成，正在出餐中...\n預計抵達時間 %orderTime%"
         },
         {
             "location": "order.delivering.almost",
