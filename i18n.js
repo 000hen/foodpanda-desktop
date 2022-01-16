@@ -10,7 +10,11 @@ class Localization {
         var lang = this.defaultLang;
         if (this.fs.existsSync(this.path.join(__dirname, "locals", `${this.languageid}.json`))) lang = this.languageid;
         var location = JSON.parse(this.fs.readFileSync(this.path.join(__dirname, "locals", `${lang}.json`)).toString());
-        return location.data.find(x => x.location == langLocation).value;
+        try {
+            return location.data.find(x => x.location == langLocation).value;
+        } catch (e) {
+            return undefined;
+        }
     }
 
     parseString(str, replacements) {

@@ -10,6 +10,7 @@ const {
 const path = require('path');
 require("./order.js");
 const { Localization } = require("./i18n.js");
+const { sendNotification } = require('./notification.js');
 const osLang = Intl.DateTimeFormat().resolvedOptions().locale;
 const locale = new Localization(osLang);
 const packageJson = global.packageJson = require('./package.json');
@@ -25,6 +26,7 @@ Menu.setApplicationMenu(null);
 
 const toPage = global.toPage = (path) => {
     mainWindow.show();
+    mainWindow.moveTop();
     mainWindow.loadURL(`https://www.foodpanda.com.tw/${path}`);
 }
 
@@ -95,7 +97,8 @@ function createWindow() {
             enableRemoteModule: true,
             contextIsolation: true,
             preload: path.join(__dirname, 'preload.js')
-        }
+        },
+        show: false
     });
 
     var menu = Menu.buildFromTemplate([{
@@ -142,6 +145,10 @@ function createWindow() {
         }
     });
 
+    global.mainWindow.on("ready-to-show", () => {
+        global.mainWindow.show();
+    });
+
     globalShortcut.register('CommandOrControl+Shift+I', () => {
         if (global.mainWindow) global.mainWindow.webContents.openDevTools();
     });
@@ -155,4 +162,5 @@ app.on('second-instance', (event, commandLine, workingDirectory) => {
         global.mainWindow.show();
     }
 });
+
 app.setAppUserModelId(packageJson.displayName);
