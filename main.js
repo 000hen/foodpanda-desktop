@@ -127,6 +127,9 @@ async function createWindow() {
     tray.setToolTip(packageJson.displayName);
     var trayMenu = Menu.buildFromTemplate(submenu);
     tray.setContextMenu(trayMenu);
+    tray.on("click", () => {
+        mainWindow.show();
+    });
 
     // Make the window menu
     mainWindow.setMenu(menu);

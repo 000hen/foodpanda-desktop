@@ -16,5 +16,6 @@ contextBridge.exposeInMainWorld('electron', {
     },
     parseString: function (str, replacements) {
         return new Localization().parseString(str, replacements);
-    }
+    },
+    foodpandaDefaultURL: global.foodpandaURL,
 });
