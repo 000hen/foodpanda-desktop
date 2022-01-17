@@ -5,13 +5,14 @@ const {
     BrowserWindow,
     Menu,
     globalShortcut,
-    Tray
+    Tray,
+    shell
 } = electron;
 const path = require('path');
 require("./order.js");
 const { Localization } = require("./i18n.js");
 const { sendNotification } = require('./notification.js');
-const osLang = Intl.DateTimeFormat().resolvedOptions().locale;
+const osLang = global.osLang = Intl.DateTimeFormat().resolvedOptions().locale;
 const locale = new Localization(osLang);
 const packageJson = global.packageJson = require('./package.json');
 const gotTheLock = app.requestSingleInstanceLock();
@@ -27,7 +28,7 @@ Menu.setApplicationMenu(null);
 const toPage = global.toPage = (path) => {
     mainWindow.show();
     mainWindow.moveTop();
-    mainWindow.loadURL(`https://www.foodpanda.com.tw/${path}`);
+    mainWindow.loadURL(`${global.foodpandaURL}/${path}`);
 }
 
 var submenu = [
@@ -88,7 +89,9 @@ var submenu = [
     }
 ];
 
-function createWindow() {
+async function createWindow() {
+    var { getLocal } = require('./getLocal.js');
+    const foodpandaURL = global.foodpandaURL = await getLocal();
     var mainWindow = global.mainWindow = new BrowserWindow({
         width: 1000,
         height: 600,
@@ -127,7 +130,7 @@ function createWindow() {
 
     // Make the window menu
     mainWindow.setMenu(menu);
-    mainWindow.loadURL("https://www.foodpanda.com.tw/");
+    mainWindow.loadURL(foodpandaURL);
 
     require("@electron/remote/main").enable(mainWindow.webContents);
 
@@ -145,8 +148,15 @@ function createWindow() {
         }
     });
 
-    global.mainWindow.on("ready-to-show", () => {
-        global.mainWindow.show();
+    mainWindow.on("ready-to-show", () => {
+        mainWindow.show();
+    });
+
+    mainWindow.webContents.on("will-navigate", (event, url) => {
+        if (url.indexOf(global.foodpandaURL) !== 0) {
+            event.preventDefault();
+            shell.openExternal(url);
+        }
     });
 
     globalShortcut.register('CommandOrControl+Shift+I', () => {

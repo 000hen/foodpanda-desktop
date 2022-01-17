@@ -29,7 +29,7 @@
         try {
             var c = document.querySelector("img.order-status-illustration").src;
 
-            if (c === "https://images.deliveryhero.io/image/pd-otp-illustrations/v2/FP_TW/illu-delivered.gif") {
+            if (c.match(/illu-delivered\.gif/gm)) {
                 sendToBack("delivered", document.querySelector(".vendor-name").innerHTML);
                 window.close();
             }
