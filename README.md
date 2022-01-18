@@ -17,6 +17,7 @@ This is a Foodpanda app that is able to order food from Foodpanda on desktop pla
  3. Run the `npm start` command. (Using `NODE_ENV=development` will let the devtools open)
 
 Now, you can use the app to order food.
+***p.s. This app will auto fetch your ip to get the location, if you don't want to use this function, use run args `--disable-auto-set-locale` with `--local=(Country ID)`***
 
 ## Build the App
 

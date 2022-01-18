@@ -1,19 +1,25 @@
 async function getLocal() {
     var http = require('http');
+    var { app } = require('electron');
     var geoip = require('geoip-lite');
-    var ip = new Promise((resolve, reject) => {
-        http.get({
-            host: 'api.ipify.org',
-            port: 80,
-            path: '/'
-        }, (resp) => {
-            resp.on('data', (ip) => {
-                resolve(ip.toString());
+    var country = undefined;
+    if (app.commandLine.hasSwitch('disable-auto-set-locale') && app.commandLine.getSwitchValue("locale")) {
+        country = app.commandLine.getSwitchValue("locale")
+    } else {
+        var ip = new Promise((resolve, reject) => {
+            http.get({
+                host: 'api.ipify.org',
+                port: 80,
+                path: '/'
+            }, (resp) => {
+                resp.on('data', (ip) => {
+                    resolve(ip.toString());
+                });
             });
         });
-    });
-    var ipCountry = geoip.lookup(await ip);
-    switch (ipCountry.country) {
+        country = geoip.lookup(await ip).country;
+    }
+    switch (country) {
         // East Asia
         case "TW":
             return "https://www.foodpanda.com.tw/";
