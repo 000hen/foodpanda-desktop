@@ -15,6 +15,7 @@
  3. 使用 `npm start` 命令來啟動 (使用 `NODE_ENV=development` 會讓開發者工具開啟)
 
 現在，你可以使用這個程式來訂餐。
+
 ***p.s. 這個程式會自動取得你的IP來取得位置，如果你不想使用這個功能，請使用run args `--disable-auto-set-locale` 與 `--local=(Country ID)`***
 
 ## 建置程式

@@ -3,8 +3,8 @@ async function getLocal() {
     var { app } = require('electron');
     var geoip = require('geoip-lite');
     var country = undefined;
-    if (app.commandLine.hasSwitch('disable-auto-set-locale') && app.commandLine.getSwitchValue("locale")) {
-        country = app.commandLine.getSwitchValue("locale")
+    if (app.commandLine.hasSwitch('disable-auto-set-locale') && app.commandLine.getSwitchValue("local")) {
+        country = app.commandLine.getSwitchValue("local")
     } else {
         var ip = new Promise((resolve, reject) => {
             http.get({

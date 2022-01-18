@@ -173,6 +173,12 @@ async function createWindow() {
         window.setMenu(menu);
     });
 
+    // Provide app's not found page
+    mainWindow.webContents.on("did-fail-load", (event, errorCode, errorDescription, validatedURL, isMainFrame) => {
+        event.preventDefault();
+        mainWindow.loadURL(`file://${__dirname}/page/notfound.html`);
+    });
+
     globalShortcut.register('CommandOrControl+Shift+I', () => {
         if (global.mainWindow) global.mainWindow.webContents.openDevTools();
     });
