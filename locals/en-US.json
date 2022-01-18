@@ -43,6 +43,10 @@
             "value": "Quit"
         },
         {
+            "location": "default.menu.openinbrowser",
+            "value": "Open in Browser"
+        },
+        {
             "location": "order.ordered",
             "value": "Order placed for %orderName% at %orderTime%."
         },

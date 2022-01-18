@@ -43,6 +43,10 @@
             "value": "結束"
         },
         {
+            "location": "default.menu.openinbrowser",
+            "value": "在瀏覽器中開啟"
+        },
+        {
             "location": "order.ordered",
             "value": "餐點 %orderName% 已下訂單，預計 %orderTime% 抵達。"
         },

@@ -155,11 +155,22 @@ async function createWindow() {
         mainWindow.show();
     });
 
-    mainWindow.webContents.on("will-navigate", (event, url) => {
-        if (url.indexOf(global.foodpandaURL) !== 0) {
-            event.preventDefault();
-            shell.openExternal(url);
-        }
+    function urlCatch(event, url) {
+        if (url.match(foodpandaURL)) return;
+        event.preventDefault();
+        shell.openExternal(url);
+    }
+
+    mainWindow.webContents.on("will-navigate", urlCatch);
+    mainWindow.webContents.on("did-create-window", (window) => {
+        var menu = Menu.buildFromTemplate([{
+            label: locale.getLocation("default.menu.openinbrowser"),
+            click: () => {
+                shell.openExternal(window.webContents.getURL());
+                window.close();
+            }
+        }]);
+        window.setMenu(menu);
     });
 
     globalShortcut.register('CommandOrControl+Shift+I', () => {

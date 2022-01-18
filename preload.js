@@ -2,6 +2,7 @@ const {
     contextBridge,
     ipcRenderer
 } = require('electron');
+const { getGlobal } = require("@electron/remote");
 var Localization = require('./i18n.js').Localization;
 
 contextBridge.exposeInMainWorld('electron', {
@@ -17,5 +18,12 @@ contextBridge.exposeInMainWorld('electron', {
     parseString: function (str, replacements) {
         return new Localization().parseString(str, replacements);
     },
-    foodpandaDefaultURL: global.foodpandaURL,
+    foodpandaDefaultURL: getGlobal("foodpandaURL"),
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+    var copy = document.querySelector(".footer__disclaimer");
+    var link = document.querySelector(".footer__nav").querySelector("ul");
+    copy.innerHTML += `, ${getGlobal("packageJson").displayName} v${getGlobal("packageJson").version} by ${getGlobal("packageJson").author} <a href="${getGlobal("packageJson").homepage}" target="_blank">${getGlobal("packageJson").homepage}</a>`;
+    link.innerHTML += `<li><a href="${getGlobal("packageJson").homepage}" target="_blank">${getGlobal("packageJson").displayName} v${getGlobal("packageJson").version}</a></li>`;
 });
