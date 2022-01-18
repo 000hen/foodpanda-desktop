@@ -64,7 +64,7 @@ async function getLocal() {
             return "https://www.foodpanda.ro/";
         
         default:
-            return undefined;
+            return `file:///${__dirname}/page/unsupport.html`;
     }
 }
 

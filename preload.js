@@ -19,6 +19,9 @@ contextBridge.exposeInMainWorld('electron', {
         return new Localization().parseString(str, replacements);
     },
     foodpandaDefaultURL: getGlobal("foodpandaURL"),
+    version: getGlobal("packageJson").version,
+    displayName: getGlobal("packageJson").displayName,
+    getGlobal: getGlobal,
 });
 
 window.addEventListener('DOMContentLoaded', () => {

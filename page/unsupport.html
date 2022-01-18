@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Unsupport Your Country - Foodpanda Desktop</title>
+    </head>
+    <body>
+        <!--Make the unsupport page-->
+        <div class="unsupport-page">
+            <div class="unsupport-page-content">
+                <div class="unsupport-page-content-title">
+                    <h1>Unsupport Your Country</h1>
+                </div>
+                <div class="unsupport-page-content-body">
+                    <p>
+                        Sorry, Foodpanda does not support your country.
+                    </p>
+                    <p>
+                        Check out <a href="https://www.foodpanda.com/">Foodpanda website</a> for more information.
+                    </p>
+                    <h6>If Foodpanda is available in your country, and you still see this page, please submit us a issue on <a href="https://github.com/000hen/foodpanda-desktop/issues">Github</a>.</h6>
+                </div>
+                <footer></footer>
+            </div>
+        </div>
+        <style>
+            body {
+                margin: 0;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
+            a {
+                color: #318fec;
+                text-decoration: none;
+            }
+            .unsupport-page {
+                width: 100%;
+                height: 100vh;
+                background-color: #f5f5f5;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .unsupport-page-content {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .unsupport-page-content-title {
+                width: 100%;
+                height: 100px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .unsupport-page-content-title h1 {
+                font-size: 50px;
+                font-weight: bold;
+                color: #000;
+            }
+            .unsupport-page-content-body {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .unsupport-page-content-body p {
+                font-size: 20px;
+                font-weight: bold;
+                color: #000;
+            }
+        </style>
+        <script>
+            var footer = document.querySelector('footer');
+            footer.innerHTML = `${window.electron.displayName} v${window.electron.version} by ${window.electron.getGlobal("packageJson").author} <a href="${window.electron.getGlobal("packageJson").homepage}" target="_blank">${window.electron.getGlobal("packageJson").homepage}</a>`;
+            footer.style.fontSize = "12px";
+            footer.style.color = "#000";
+            footer.style.textAlign = "center";
+            footer.style.marginTop = "10px";
+            footer.style.fontWeight = "bold";
+        </script>
+    </body>
+</html>
