@@ -71,4 +71,11 @@
             }
         } catch (e) { }
     }, 1000);
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector("html"/*Element of Chat box*/).addEventListener("DOMNodeInserted", () => {
+            // Chat box message fetcher
+
+        });
+    });
 })()
