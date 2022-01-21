@@ -6,7 +6,8 @@ const {
     Menu,
     globalShortcut,
     Tray,
-    shell
+    shell,
+    session
 } = electron;
 const path = require('path');
 require("./order.js");
@@ -181,6 +182,14 @@ async function createWindow() {
 
     globalShortcut.register('CommandOrControl+Shift+I', () => {
         if (global.mainWindow) global.mainWindow.webContents.openDevTools();
+    });
+
+    session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
+        details.requestHeaders["User-Agent"] = `${packageJson.displayName}/v${packageJson.version}`;
+        callback({
+            cancel: false,
+            requestHeaders: details.requestHeaders
+        });
     });
 
     return mainWindow;

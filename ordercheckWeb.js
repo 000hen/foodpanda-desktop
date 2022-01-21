@@ -8,7 +8,7 @@
     var nowOn = "";
     var path = location.pathname;
 
-    var orderid = path.replace(/\/order-tracking\/(\w{4}-\w{4})/gm, "$1");
+    var orderid = path.replace(/\/order-tracking\/(\w{4}-\w{4})/gm, "$1").replace("/", "");
     var orderName = "";
     var orderTime = "";
 
@@ -59,6 +59,7 @@
                     if (nowOn !== "delivering") {
                         // delivering
                         sendToBack("delivering");
+                        getChatEvent();
                     }
                     break;
 
@@ -72,10 +73,11 @@
         } catch (e) { }
     }, 1000);
 
-    document.addEventListener("DOMContentLoaded", () => {
-        document.querySelector("html"/*Element of Chat box*/).addEventListener("DOMNodeInserted", () => {
-            // Chat box message fetcher
-
+    function getChatEvent() {
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelector("div[data-testid=CHAT__FEED]").addEventListener("DOMNodeInserted", () => {
+                
+            });
         });
-    });
+    }
 })()

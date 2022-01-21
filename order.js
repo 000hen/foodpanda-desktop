@@ -26,6 +26,8 @@ function orderWin(orderid, orderName) {
         }
     });
 
+    require("@electron/remote/main").enable(win.webContents);
+
     win.loadURL(`${global.foodpandaURL}/order-tracking/${orderid}`);
     var script = fs.readFileSync(path.join(__dirname, "ordercheckWeb.js")).toString();
     win.webContents.executeJavaScript(script);
