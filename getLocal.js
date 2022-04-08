@@ -19,7 +19,7 @@ async function getLocal() {
         });
         country = geoip.lookup(await ip).country;
     }
-    switch (country) {
+    switch (country.toLocaleUpperCase()) {
         // East Asia
         case "TW":
             return "https://www.foodpanda.com.tw/";

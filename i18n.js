@@ -1,7 +1,8 @@
 class Localization {
     constructor(languageid) {
+        var { app } = require('electron');
         this.defaultLang = "en-US";
-        this.languageid = languageid;
+        this.languageid = app.commandLine.getSwitchValue("language") || languageid || this.defaultLang;
         this.fs = require('fs');
         this.path = require('path');
     }
