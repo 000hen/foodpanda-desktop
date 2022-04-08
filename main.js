@@ -7,7 +7,8 @@ const {
     globalShortcut,
     Tray,
     shell,
-    session
+    session,
+    nativeImage
 } = electron;
 const path = require('path');
 require("./order.js");
@@ -17,6 +18,10 @@ const osLang = global.osLang = Intl.DateTimeFormat().resolvedOptions().locale;
 const locale = new Localization(osLang);
 const packageJson = global.packageJson = require('./package.json');
 const gotTheLock = app.requestSingleInstanceLock();
+const trayImage = nativeImage.createFromPath(path.join(__dirname, 'icons', 'foodpanda.png')).resize({
+    width: 16,
+    height: 16
+});
 
 if (!gotTheLock) app.quit();
 
@@ -110,7 +115,7 @@ async function createWindow() {
         submenu: submenu
     }]);
 
-    var tray = mainWindow.tray = new Tray(path.join(__dirname, 'icons', 'foodpanda.png'));
+    var tray = mainWindow.tray = new Tray(trayImage);
 
     submenu.unshift(
         {
@@ -128,9 +133,11 @@ async function createWindow() {
     tray.setToolTip(packageJson.displayName);
     var trayMenu = Menu.buildFromTemplate(submenu);
     tray.setContextMenu(trayMenu);
-    tray.on("click", () => {
-        mainWindow.show();
-    });
+    if (process.platform === 'darwin') {
+        tray.on("click", () => {
+            mainWindow.show();
+        });
+    }
 
     // Make the window menu
     mainWindow.setMenu(menu);
