@@ -12,7 +12,7 @@
         var orderid = path.replace(/\/order-tracking\/(\w{4}-\w{4})/gm, "$1");
         var f = setInterval(() => {
             try {
-                var g = document.querySelector(".vendor-name");
+                var g = document.querySelector("a.cl-interaction-primary.f-14.fw-semi-bold.lh-regular");
                 window.electron.addToOrder(orderid, g.innerHTML);
                 clearInterval(f);
             } catch (e) { }

@@ -37,7 +37,7 @@
         
         try {
             var f = document.querySelector(".order-status-progress-bar.order-status-progress-bar-active").parentNode.getAttribute("data-testid").split("__")[2];
-            orderTime = document.querySelector("figcaption[data-testid=order-status__eta__label__eta]").innerHTML.replace(/ /gm, "");
+            orderTime = document.querySelector("figcaption[data-testid=order-status__eta__label__time-range]").innerHTML.replace(/ /gm, "");
             orderName = document.querySelector("a.cl-interaction-primary.f-14.fw-semi-bold.lh-regular").innerHTML;
 
             switch (f) {
