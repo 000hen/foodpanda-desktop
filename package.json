@@ -1,7 +1,7 @@
 {
   "name": "foodpandadesktop",
   "displayName": "Foodpanda Desktop",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Just a pwa-like Foodpanda app with desktop mode",
   "main": "main.js",
   "scripts": {
