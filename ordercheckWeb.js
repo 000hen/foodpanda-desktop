@@ -30,7 +30,7 @@
             var c = document.querySelector("img.order-status-illustration").src;
 
             if (c.match(/illu-delivered\.gif/gm)) {
-                sendToBack("delivered", document.querySelector(".vendor-name").innerHTML);
+                sendToBack("delivered", document.querySelector("a.cl-interaction-primary.f-14.fw-semi-bold.lh-regular").innerHTML);
                 window.close();
             }
         } catch (e) { }

@@ -13,7 +13,11 @@
     "build:all": "electron-builder --win --mac --linux",
     "build:publish": "electron-builder --x64 --ia32 --publish always"
   },
-  "author": "Muisnow",
+  "author": {
+    "name": "Muisnow",
+    "email": "muisnowbusiness@gmail.com",
+    "url": "https://github.com/000hen"
+  },
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/000hen/foodpanda-desktop/issues"
@@ -40,6 +44,11 @@
       "icon": "./icons/foodpanda.png",
       "publish": [
         "github"
+      ],
+      "target": [
+        "deb",
+        "AppImage",
+        "tar.gz"
       ]
     },
     "mac": {
