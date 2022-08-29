@@ -27,6 +27,6 @@ contextBridge.exposeInMainWorld('electron', {
 window.addEventListener('DOMContentLoaded', () => {
     var copy = document.querySelector(".footer__disclaimer");
     var link = document.querySelector(".footer__nav").querySelector("ul");
-    copy.innerHTML += `, ${getGlobal("packageJson").displayName} v${getGlobal("packageJson").version} by ${getGlobal("packageJson").author} <a href="${getGlobal("packageJson").homepage}" target="_blank">${getGlobal("packageJson").homepage}</a>`;
+    copy.innerHTML += `, ${getGlobal("packageJson").displayName} v${getGlobal("packageJson").version} by ${getGlobal("packageJson").author.name} <a href="${getGlobal("packageJson").homepage}" target="_blank">${getGlobal("packageJson").homepage}</a>`;
     link.innerHTML += `<li><a href="${getGlobal("packageJson").homepage}" target="_blank">${getGlobal("packageJson").displayName} v${getGlobal("packageJson").version}</a></li>`;
 });
